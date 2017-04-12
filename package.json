@@ -1,0 +1,22 @@
+{
+  "name": "adgeek-logger",
+  "version": "1.0.0",
+  "description": "Logger for AdGeek",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "scripts": {
+    "test": "node test/logger.test.js"
+  },
+  "keywords": [],
+  "author": "David Oddoye <oddoyedavid@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "bunyan-mongodb-logger": "0.0.2"
+  },
+  "devDependencies": {
+    "tape": "^4.6.3"
+  }
+}
