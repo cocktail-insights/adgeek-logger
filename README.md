@@ -24,7 +24,7 @@ Logging Library for AdGeek
 
     Log.error('This is info', '<store_id>', new Error('oops'));
 
-    See code [Example](/examples.js)
+  See code [Example](../example.js)
     
 
 ## Tests
