@@ -6,20 +6,19 @@ const LEVELS = {
 
 module.exports = (opts) => {
 
-    if (opts.mongo_url) {
+    if (opts.production && !opts.mongo_url) {
+        throw new Error('mongo_url is required in production');
+    } else {
+        opts.url = opts.mongo_url;
+        delete opts.mongo_url;
         // Create options object passing in defaults if not provided.
         const options = Object.assign({}, {
             name: 'adgeek-logger',
-            production: process.env.NODE_ENV === 'production',
-            collection: 'logs'
+            stream: (opts.production && opts.url) ? 'mongodb' : 'stdout',
+            collections: 'logs'
         }, opts);
 
-        const log = bunyanMongoDbLogger({
-            name: options.name,
-            stream: options.production ? 'mongodb' : 'stdout',
-            url: options.mongo_url,
-            collections: options.collection
-        });
+        const log = bunyanMongoDbLogger(options);
 
         return {
 
@@ -66,7 +65,5 @@ module.exports = (opts) => {
                 }
             }
         };
-    } else {
-        throw new Error('mongo_url is required');
     }
 }
