@@ -5,7 +5,7 @@ Logging Library for AdGeek
 
 ## Installation
 
-  `npm install `
+  `npm install adgeek-logger`
 
 ## Usage
 
@@ -14,7 +14,7 @@ Logging Library for AdGeek
     const Log = AdGeekLogger({
       name: 'Logger',
       mongo_url: 'mongodb://localhost:27017/logs',
-      collection: 'app-logs',
+      collections: 'app-logs',
       production: true
     });
 
@@ -23,6 +23,8 @@ Logging Library for AdGeek
     Log.info('This is info',);
 
     Log.error('This is info', '<store_id>', new Error('oops'));
+
+    See code [Example](/examples.js)
     
 
 ## Tests
