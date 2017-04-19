@@ -24,11 +24,11 @@ module.exports = (opts) => {
 
             /**
              * Log at the info level
-             * 
-             * @param {String} message 
-             * @param {String} storeId 
-             * @param {Object} details 
-             * @returns 
+             *
+             * @param {String} message
+             * @param {String} storeId
+             * @param {Object} details
+             * @returns
              */
             info(message, storeId, details) {
                 return log.info({
@@ -39,11 +39,11 @@ module.exports = (opts) => {
             },
             /**
              * Log at the error level
-             * 
-             * @param {String} message 
-             * @param {String} storeId 
-             * @param {Error} error 
-             * @returns 
+             *
+             * @param {String} message
+             * @param {String} storeId
+             * @param {Error} error
+             * @returns
              */
             error(message, storeId, error) {
                 if (error instanceof Error) {
@@ -58,7 +58,7 @@ module.exports = (opts) => {
                     }, message);
                 } else {
                     return log.error({
-                        error,
+                        details: error,
                         type: storeId || 'store',
                         level_name: LEVELS['50']
                     }, message);
