@@ -27,7 +27,6 @@
   "author": "David Oddoye <oddoyedavid@gmail.com>",
   "license": "MIT License",
   "dependencies": {
-    "adgeek-queue": "github:cocktail-insights/adgeek-queue",
     "bunyan": "^1.8.10",
     "mkdirp": "^0.5.1",
     "stream-to-mongo": "^0.1.5"
