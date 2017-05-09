@@ -1,10 +1,12 @@
-const AdGeekLogger = require('./index');
+import AdGeekLogger from './lib';
 
 const DevelopmentLog = AdGeekLogger({
-    name: 'DevLogger'
+  name: 'DevLogger',
 });
 
-DevelopmentLog.info('This is info with details', '<store_id>', {foo: 'bar'});
+DevelopmentLog.info('This is info with details', '<store_id>', {
+  foo: 'bar',
+});
 DevelopmentLog.info('This is info with no details', '<store_id>');
 DevelopmentLog.info('This is info');
 
@@ -13,15 +15,14 @@ DevelopmentLog.error('Oops. Something went wrong', '<store_id>');
 DevelopmentLog.error('Oops. Something went wrong');
 
 
-
 const ProductionLog = AdGeekLogger({
-    name: 'ProdLogger',
-    mongo_url: 'mongodb://localhost:27017/somedatabase',
-    collections: 'logs',
-    production: true
+  name: 'ProdLogger',
+  mongo_url: 'mongodb://localhost:27017/somedatabase',
+  collection: 'logs',
+  production: true,
 });
 
-ProductionLog.info('This is info with details', '<store_id>', {foo: 'bar'});
+ProductionLog.info('This is info with details', '<store_id>', { foo: 'bar' });
 ProductionLog.info('This is info with no details', '<store_id>');
 ProductionLog.info('This is info');
 
