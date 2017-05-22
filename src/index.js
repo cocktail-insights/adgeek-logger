@@ -24,7 +24,7 @@ function AdGeekLogger(opts) {
     throw new Error('mongo_url is required in production mode.');
   }
 
-  if (opts.production && (!opts.mongo_url || !opts.customStream)) {
+  if (opts.production && !(opts.mongo_url || opts.customStream)) {
     console.warn('**********\n\nConsider using something other than just console in production\n\n**********\n\n');
   }
 
