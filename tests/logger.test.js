@@ -14,12 +14,3 @@ test('Should initialize with empty options object.', (t) => {
   });
   t.end();
 });
-
-test('Should not initialize with just a mongo_url', (t) => {
-  t.throws(() => {
-    AdGeekLogger({
-      mongo_url: 'some_url',
-    });
-  });
-  t.end();
-});
