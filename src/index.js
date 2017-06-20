@@ -1,55 +1,44 @@
 'use strict';
 
 import bunyan from 'bunyan';
-import mongoStream from 'stream-to-mongo';
 
 const LEVELS = {
   50: 'error',
   30: 'info',
 };
 
-function getMongoStream(url, collection, level) {
-  return {
-    type: 'raw',
-    level: level || 'info',
-    stream: mongoStream({
-      db: url,
-      collection,
-    }),
-  };
-}
+const defaultOptions = {
+  production: false,
+  name: 'adgeek-logger',
+  customStream: null,
+  logToConsole: true,
+};
 
 function AdGeekLogger(opts) {
-  if (!opts.production && opts.mongo_url) {
-    throw new Error('mongo_url is required in production mode.');
-  }
+  const options = Object.assign({}, defaultOptions, opts);
 
-  if (opts.production && (!opts.mongo_url || !opts.customStream)) {
+  if (options.production && !options.customStream) {
     console.warn('**********\n\nConsider using something other than just console in production\n\n**********\n\n');
   }
 
   // Create options object passing in defaults if not provided.
-  const options = {
-    name: opts.name || 'adgeek-logger',
+  const bunyanOptions = {
+    name: options.name,
     streams: [],
   };
 
-  if (opts.customStream) {
-    options.streams.push(opts.customStream);
+  if (options.customStream) {
+    bunyanOptions.streams.push(options.customStream);
   }
 
-  if (opts.logToConsole) {
-    options.streams.push({
+  if (options.logToConsole) {
+    bunyanOptions.streams.push({
       level: opts.level || 'info',
       stream: process.stdout,
     });
   }
 
-  if (opts.production && opts.mongo_url) {
-    options.streams.push(getMongoStream(opts.mongo_url, opts.collection, 'info'));
-  }
-
-  const log = bunyan.createLogger(options);
+  const log = bunyan.createLogger(bunyanOptions);
 
   return {
 
