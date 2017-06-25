@@ -8,10 +8,10 @@
     "url": "git+https://github.com/cocktail-insights/adgeek-logger.git"
   },
   "scripts": {
-    "test": "yarn run compile && NODE_ENV='testing' babel-tape-runner tests/**/*.js | tap-spec",
+    "test": "npm run compile && NODE_ENV='testing' babel-tape-runner tests/**/*.js | tap-spec",
     "compile": "babel --out-dir lib src",
-    "prepublish": "yarn run compile",
-    "postinstall": "yarn run compile",
+    "prepublish": "npm run compile",
+    "postinstall": "npm run compile",
     "lint": "eslint src"
   },
   "keywords": [
